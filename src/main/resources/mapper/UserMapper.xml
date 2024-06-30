@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cloudnote.dao.UserDao">
+	<select id="findByName" parameterType="String" resultType="com.example.cloudnote.entity.User">
+		select 
+			userId as id,
+			userName as name,
+			userPassword as password,
+			userToken as token,
+			userNick as nick
+		from	user
+		where userName=#{name}
+	</select>
+	
+	<insert id="save" parameterType="com.example.cloudnote.entity.User">
+	INSERT INTO user (
+	userId,
+	userName,
+	userPassword,
+	userToken,
+	userNick
+	) VALUE(
+	#{id},
+	#{name},
+	#{password},
+	#{token},
+	#{nick}
+	)
+	</insert>
+	
+	<select id="findByUserId" parameterType="String"
+			  resultType="com.example.cloudnote.entity.User">
+		select 	userName as name
+		from	user
+		where	userId=#{userid}
+			  
+	 </select>
+</mapper>
+
+
+
+
