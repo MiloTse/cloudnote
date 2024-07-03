@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cloudnote.dao.NoteDao">
+	<select id="findByBookId" parameterType="String" resultType="Map">
+		select 
+		noteId as id,
+		noteTitle as title 
+		from 
+		note 
+		where 
+		noteStatusId='1' 
+		and 
+		notebookId=#{bookId}
+	</select>
+	
+	<select id="findByNoteId" parameterType="String" resultType="Map">
+		select 
+		noteTitle as title, 
+		noteBody as body 
+		from 
+		note 
+		where 
+		noteStatusId='1' 
+		and 
+		noteId=#{noteId}
+	</select>
+	<!-- 
+	id==entiy.Note.id
+	title==Note.title
+	body==Note.body
+	-->
+	<update id="update" parameterType="com.example.cloudnote.entity.Note">
+		update 
+		note 
+		set 
+		noteTitle=#{title}, 
+		noteBody=#{body},
+		noteLast_modifyTime=#{lastModifyTime}
+		where
+		noteId=#{id}
+		
+	</update>
+	
+	<insert id="save" parameterType="com.example.cloudnote.entity.Note">
+		insert into note(
+			noteId,
+			notebookId,
+			userId ,
+			noteStatusId,
+			noteTypeId ,
+			noteTitle,
+			noteCreateTime 
+		
+		)values(
+			#{id},
+			#{bookId},
+			#{userId},
+			#{statusId},
+			#{typeId},
+			#{title},			
+			#{createTime}
+		
+		)
+		
+		
+	
+	
+	
+	
+	</insert>
+	
+</mapper>
+
+
+
+

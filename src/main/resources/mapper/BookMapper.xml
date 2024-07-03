@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cloudnote.dao.BookDao">
+	<select id="findByUserId" parameterType="String" resultType="com.example.cloudnote.entity.Book">
+		SELECT 	notebookId ,notebookName
+		FROM notebook
+		WHERE userId=#{userId}
+	</select>
+	
+	<select id="findByBookId"  parameterType="String" resultType="com.example.cloudnote.entity.Book">
+		SELECT 
+		notebookId ,
+		userId,
+		notebookName ,
+		notebookTypeId ,
+		notebookDesc,
+		notebookCreatetime
+		FROM 
+		notebook 
+		WHERE
+		notebookId=#{bookId}
+	</select>
+	<insert id="save" parameterType="com.example.cloudnote.entity.Book">
+	insert into notebook(
+		notebookId,                        
+		userId,                                 
+		notebookTypeId ,  
+		notebookName,                          
+		notebookCreatetime
+	)values(
+		#{notebookId},                           
+		#{userId},                                
+		#{notebookTypeId},                 
+		#{notebookName},                          	                       
+		#{notebookCreatetime}
+	)
+	
+	 
+	
+	</insert>
+	
+	
+</mapper>
+
+
+
+
